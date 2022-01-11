@@ -6,13 +6,16 @@ using Newtonsoft.Json;
 var currentDirectory = Directory.GetCurrentDirectory();
 var storesDirectory = Path.Combine(currentDirectory, "stores");
 
+//this code created the salses total txt file
 var salesTotalDir = Path.Combine(currentDirectory, "salesTotalDir");
 Directory.CreateDirectory(salesTotalDir);
 
+//using the findfiles method we get back an Ienumerable of sale files
 var salesFiles = FindFiles(storesDirectory);
 
+//this method parses through the files and gets the sales total
 var salesTotal = CalculateSalesTotal(salesFiles);
-
+//this appends the total to our total.txt file. executed once for every time the program runs
 File.AppendAllText(Path.Combine(salesTotalDir, "totals.txt"), $"{salesTotal}{Environment.NewLine}");
 
 // foreach (var file in salesFiles)
